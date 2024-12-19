@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swech VPN</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #232323;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        header {
+            background-color: #007bff;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            height: 60px;
+        }
+
+        .admin-button {
+            position: absolute;
+            top: 5px; /* Admin butonunu biraz yukarı kaydırdık */
+            right: 10px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background-image: url('/storage/emulated/0/Download/Site/admin.jpg'); /* Eski hali */
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .play-pause-btn {
+            width: 35px; /* Küçültüldü */
+            height: 35px; /* Küçültüldü */
+            border: none;
+            border-radius: 50%;
+            background-image: url('/storage/emulated/0/Download/Site/play.jpg'); /* Başlangıçta oynatma resmi */
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            margin-left: 10px; /* Swech'in hemen sağında olacak */
+            transition: transform 0.3s, box-shadow 0.3s; /* 3D dönüşüm ve gölge ekleme */
+        }
+
+        .play-pause-btn:active {
+            transform: scale(0.95); /* Butona basıldığında küçülme efekti */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* 3D etki için gölge */
+        }
+
+        .play-pause-btn:hover {
+            transform: scale(1.1); /* Hover ile büyüme efekti */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Hoverda daha belirgin gölge */
+        }
+
+        .container {
+            margin: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .text-overlay {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .text-overlay p {
+            margin-bottom: 20px;
+        }
+
+        .bold-text {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .code-input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .code-input {
+            background-color: #333;
+            border: 2px solid #555;
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            font-family: monospace;
+            position: relative;
+        }
+
+        .code-input input {
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-family: monospace;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .center-text {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .link {
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 20px;
+            border-top: 1px solid #555;
+            width: 100%;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .circle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .circle-buttons button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .button-start {
+            background-image: url('./Start.jpg');
+        }
+
+        .button-tg {
+            background-image: url('./Tg.jpg');
+        }
+
+        /* Kar Tanesi Efekti */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(calc(100vh - 20px));
+            }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1rem;
+            opacity: 0.7;
+            user-select: none;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+        }
+
+        .snowflake:nth-child(odd) {
+            animation-duration: 10s;
+        }
+
+        .snowflake:nth-child(even) {
+            animation-duration: 12s;
+        }
+
+        .snowflake:nth-child(3n) {
+            animation-duration: 15s;
+        }
+
+        .snowflake:nth-child(4n) {
+            animation-duration: 20s;
+            animation-timing-function: ease-out;
+        }
+
+        .snowflake {
+            font-size: calc(10px + 20px * (Math.random()));
+            opacity: 0.5 + Math.random() * 0.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Swech
+        <button class="play-pause-btn" id="playPauseButton"></button> <!-- Şarkı butonu buraya ekleniyor -->
+        <button class="admin-button" id="admin-button"></button>
+    </header>
+
+    <div class="container">
+        <div class="text-overlay">
+            <p class="bold-text">Siz bul ýerden "IOS - ANDROID - PC" üçin mugt kod alyp bilersiňiz</p>
+            <p class="small-text">kodlar satuwa degişli däl</p>
+        </div>
+
+        <div class="image-container">
+            <img src="/storage/emulated/0/Download/Site/Hiddify.jpg" alt="Hiddify VPN">
+        </div><b><p class="bold-text">Hiddify Vpn</p></b>
+
+        <div class="text-overlay">
+            <p class="bold-text">Kody kapirawat edp suratdaky ýere basyň we işlediň ☕️</p><br/>
+        </div>
+        <b>Kod:</b>
+        <div class="code-input-container">
+            <div class="code-input">
+                <input type="text" value="vless://5d4922ad-50c2-4e86-9712-f107f58c80cf@2.58.56.162:445?security=reality&encryption=none&pbk=CfCikBprxnckjjLkDOZc0AUaNaGS1BLadKe56aVM5ic&headerType=none&fp=random&spx=%2F&type=tcp&sni=www.hopkinsmedicine.org&sid=6ba85179e30d4fc2#Start%3A+%40Swech" readonly>
+            </div>
+        </div>
+        <div class="spacer"></div>
+
+        <p class="center-text" id="hiddify-link"><b>Hiddify vpn geçirmek</b></p>
+
+        <div class="spacer"></div>
+
+        <div class="circle-buttons">
+            <button class="button-start" id="button-start"></button>
+            <button class="button-tg" id="button-tg"></button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="small-text"><b>Kodlar her gün sagat 15:00 da täzelenýar</b></p>
+    </footer>
+
+    <audio id="music" src="/storage/emulated/0/Download/Site/aydym.mp3"></audio> 
+
+    <script>
+        document.getElementById("admin-button").addEventListener("click", function() {
+            window.location.href = "https://t.me/SwechAdmin"; 
+        });
+
+        document.querySelector('.code-input input').addEventListener('click', function() {
+            this.select();
+            document.execCommand('copy');
+            alert('Kod kopyalandı!');
+        });
+
+        let isPlaying = false;
+        const playPauseButton = document.getElementById("playPauseButton");
+        const music = document.getElementById("music");
+
+        playPauseButton.addEventListener("click", function() {
+            if (isPlaying) {
+                music.pause();
+                playPauseButton.style.backgroundImage = "url('/storage/emulated/0/Download/Site/play.jpg')"; 
+            } else {
+                music.play();
+                playPauseButton.style.backgroundImage = "url('/storage/emulated/0/Download/Site/pause.jpg')"; 
+            }
+            isPlaying = !isPlaying;
+        });
+
+        document.getElementById("hiddify-link").addEventListener("click", function() {
+            window.location.href = "https://play.google.com/store/apps/details?id=app.hiddify.com";
+        });
+
+        document.getElementById("button-start").addEventListener("click", function() {
+            window.location.href = "https://t.me/Swech";
+        });
+
+        document.getElementById("button-tg").addEventListener("click", function() {
+            window.location.href = "https://t.me/Swech77";
+        });
+
+        function createSnowflakes() {
+            const snowflakeCount = 50; 
+            const snowContainer = document.body;
+
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = Math.random() * 15 + 5 + 's';
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        createSnowflakes();
+    </script>
+</body>
+</html>

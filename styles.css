@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #232323;
+    color: white;
+}
+
+header {
+    background-color: #007bff;
+    padding: 20px;
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.container {
+    margin: 20px;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.text-overlay {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.text-overlay p {
+    margin-bottom: 10px; /* Yazılar arasında boşluk */
+}
+
+.bold-text {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.small-text {
+    font-size: 14px;
+    color: #aaa; /* Küçük yazının rengini daha açık yapalım */
+}
+
+.code-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.code-input {
+    background-color: #333;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    font-family: monospace;
+    position: relative;
+}
+
+.code-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+.center-text {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: #1e90ff;
+}
+
+.link {
+    color: #1e90ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 20px;
+    border-top: 1px solid #555;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.circle-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.circle-buttons button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.button-start {
+    background-image: url('/storage/emulated/0/Download/Site/Start.jpg');
+}
+
+.button-tg {
+    background-image: url('/storage/emulated/0/Download/Site/Tg.jpg');
+}
+
+.spacer {
+    margin-top: 20px;
+}
