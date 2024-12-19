@@ -39,7 +39,7 @@
             height: 45px;
             border: none;
             border-radius: 50%;
-            background-image: url('/storage/emulated/0/Download/Site/admin.jpg'); /* Eski hali */
+            background-image: url('./admin.jpg'); /* Eski hali */
             background-size: cover;
             background-position: center;
             cursor: pointer;
@@ -50,7 +50,7 @@
             height: 35px; /* Küçültüldü */
             border: none;
             border-radius: 50%;
-            background-image: url('/storage/emulated/0/Download/Site/play.jpg'); /* Başlangıçta oynatma resmi */
+            background-image: url('./play.jpg'); /* Başlangıçta oynatma resmi */
             background-size: cover;
             background-position: center;
             cursor: pointer;
@@ -233,7 +233,7 @@
         </div>
 
         <div class="image-container">
-            <img src="/storage/emulated/0/Download/Site/Hiddify.jpg" alt="Hiddify VPN">
+            <img src="./Hiddify.jpg" alt="Hiddify VPN">
         </div><b><p class="bold-text">Hiddify Vpn</p></b>
 
         <div class="text-overlay">
@@ -261,7 +261,7 @@
         <p class="small-text"><b>Kodlar her gün sagat 15:00 da täzelenýar</b></p>
     </footer>
 
-    <audio id="music" src="/storage/emulated/0/Download/Site/aydym.mp3"></audio> 
+    <audio id="music" src="./aydym.mp3"></audio> 
 
     <script>
         document.getElementById("admin-button").addEventListener("click", function() {
@@ -281,10 +281,10 @@
         playPauseButton.addEventListener("click", function() {
             if (isPlaying) {
                 music.pause();
-                playPauseButton.style.backgroundImage = "url('/storage/emulated/0/Download/Site/play.jpg')"; 
+                playPauseButton.style.backgroundImage = "url('./play.jpg')"; 
             } else {
                 music.play();
-                playPauseButton.style.backgroundImage = "url('/storage/emulated/0/Download/Site/pause.jpg')"; 
+                playPauseButton.style.backgroundImage = "url('./pause.jpg')"; 
             }
             isPlaying = !isPlaying;
         });
